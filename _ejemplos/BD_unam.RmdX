@@ -28,6 +28,7 @@ library(knitr)        # Se usará para formatear tablas en el documento
 library(sf)        # Se carga la librería 'sf' para manejo de datos espaciales.
 library(tidyr)
 library(stringr)     # Se usa para operaciones con cadenas de texto
+# devtools::install_github("brendanf/FUNGuildR")
 library(FUNGuildR) # asignación de guilds fúngicos
 library(jsonlite)
 library(DT)

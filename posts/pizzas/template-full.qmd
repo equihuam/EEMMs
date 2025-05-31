@@ -35,9 +35,7 @@ execute:
   warning: false
 ---
 
-This document shows a practical usage of the template.
-I use the Palmer penguins dataset [@horst2020] to demonstrate the features of the template.
-The code is available [here](https://kazuyanagimoto.com/quarto-academic-typst/template-full.qmd).
+This document shows a practical usage of the template. I use the Palmer penguins dataset [@horst2020] to demonstrate the features of the template. The code is available [here](https://kazuyanagimoto.com/quarto-academic-typst/template-full.qmd).
 
 ```{r}
 library(palmerpenguins)
@@ -99,8 +97,7 @@ theme_quarto <- function(font_title = font_base_regular,
 
 # Section as Heading Level 1
 
-Section numbering can be specified in the YAML `section-numbering` field
-as other Typst templates.
+Section numbering can be specified in the YAML `section-numbering` field as other Typst templates.
 
 ## Subsection as Heading Level 2
 
@@ -111,8 +108,7 @@ Y_{it} = \alpha_i + \lambda_t + \sum_{k \neq -1} \tau_h \mathbb{1}\{E_i + k = t\
 \varepsilon_{it}.
 $$
 
-I choose a mathematical font which supports the indicator function $\mathbb{1}\{\cdot\}$.
-Currently, I use the {{< meta mathfont >}} font.
+I choose a mathematical font which supports the indicator function $\mathbb{1}\{\cdot\}$. Currently, I use the {{< meta mathfont >}} font.
 
 ### Subsubsection as Heading Level 3
 
@@ -120,15 +116,13 @@ I don't use and don't recommend using heading levels 3 and below but it works.
 
 ## Citation
 
-You can cite a reference like this [@katsushika1831] or @horst2020.
-Typst has some built-in citation styles. Check the [Typst documentation](https://typst.app/docs/reference/model/bibliography/#parameters-style) for more information.
+You can cite a reference like this [@katsushika1831] or @horst2020. Typst has some built-in citation styles. Check the [Typst documentation](https://typst.app/docs/reference/model/bibliography/#parameters-style) for more information.
 
 # Figures and Tables
 
 ## Figures
 
-As @fig-facet shows, the caption is displayed below the figure.
-As a caption of the figure (`fig-cap`), I use bold text for the title and use a normal text for the description.
+As @fig-facet shows, the caption is displayed below the figure. As a caption of the figure (`fig-cap`), I use bold text for the title and use a normal text for the description.
 
 ```{r}
 #| fig-width: 6
@@ -152,8 +146,7 @@ penguins |>
   theme(legend.position = c(0.9, 0.1))
 ```
 
-When I want to show multiple figures side by side, I use the `patchwork` package.
-The reason why I don't use the `layout-col` option is that the caption is also split into two parts.
+When I want to show multiple figures side by side, I use the `patchwork` package. The reason why I don't use the `layout-col` option is that the caption is also split into two parts.
 
 ```{r}
 #| fig-width: 6
@@ -185,13 +178,9 @@ p2 <- penguins |>
 p1 + p2
 ```
 
-
 ## Tables
 
-You can use [tinytable](https://vincentarelbundock.github.io/tinytable/)
-for general tables and [modelsummary](https://vincentarelbundock.github.io/modelsummary/) for regression tables.
-As @tbl-sum-penguins shows, the caption is displayed above the table.
-The notes of the table can be added using the `notes` argument of the `tinytable::tt()` function.
+You can use [tinytable](https://vincentarelbundock.github.io/tinytable/) for general tables and [modelsummary](https://vincentarelbundock.github.io/modelsummary/) for regression tables. As @tbl-sum-penguins shows, the caption is displayed above the table. The notes of the table can be added using the `notes` argument of the `tinytable::tt()` function.
 
 ```{r}
 #| label: tbl-sum-penguins
@@ -213,9 +202,7 @@ penguins |>
   format_tt(j = c(2:9), digits = 4)
 ```
 
-Since the default backend of `modelsummary` is `tinytable`,
-you can use the customization options of `tinytable` for `modelsummary`.
-In @tbl-regression, I use `tinytable::group_tt()` function to group the regression results by the dependent variables
+Since the default backend of `modelsummary` is `tinytable`, you can use the customization options of `tinytable` for `modelsummary`. In @tbl-regression, I use `tinytable::group_tt()` function to group the regression results by the dependent variables
 
 ```{r}
 #| label: tbl-regression
@@ -246,15 +233,9 @@ list("(1)" = lm(bill_length_mm ~ species, data = penguins),
   group_tt(j = list("Bill Length (mm)" = 2:4, "Body Mass (g)" = 5:7))
 ```
 
-While `tinytable` generates compatible tables between LaTeX and Typst,
-it does not support LaTeX math expressions for Typst tables.
-I think the compatibility between LaTeX and Typst is crucial for academic writing
-because it guarantees that the document can be easily converted to LaTeX for submission to journals.
+While `tinytable` generates compatible tables between LaTeX and Typst, it does not support LaTeX math expressions for Typst tables. I think the compatibility between LaTeX and Typst is crucial for academic writing because it guarantees that the document can be easily converted to LaTeX for submission to journals.
 
-A workaround is to use [MiTeX](https://typst.app/universe/package/mitex/),
-a Typst package that allows you to use LaTeX math expressions in Typst.
-I write a custom theme for `tinytable` to convert LaTeX math expressions to MiTeX expressions.
-The following table includes LaTeX math expressions but will be converted to MiTeX expressions in the Typst output.
+A workaround is to use [MiTeX](https://typst.app/universe/package/mitex/), a Typst package that allows you to use LaTeX math expressions in Typst. I write a custom theme for `tinytable` to convert LaTeX math expressions to MiTeX expressions. The following table includes LaTeX math expressions but will be converted to MiTeX expressions in the Typst output.
 
 ```{r}
 theme_mitex <- function(x, ...) {
@@ -282,21 +263,14 @@ data.frame(Math = c("$\\alpha$", "$a_{it}$", "$e^{i\\pi} + 1 = 0$")) |>
 
 # Last words
 
-I made this template for my working papers, so it may not be suitable for other fields than economics.
-I am happy to receive feedback and suggestions for improvement.
+I made this template for my working papers, so it may not be suitable for other fields than economics. I am happy to receive feedback and suggestions for improvement.
 
 {{< appendix >}}
 
 # Supplemental Figures
 
-The section numbering will be changed to "A.1.1" in the appendix.
-The second section in the appendix will be "B".
-On the other hand, the figure numbering will be reset to "A.1", "A.2"
-so that it is clear that these figures are part of the appendix.
-The "A" stands for the "Appendix", not the section numbering.
+The section numbering will be changed to "A.1.1" in the appendix. The second section in the appendix will be "B". On the other hand, the figure numbering will be reset to "A.1", "A.2" so that it is clear that these figures are part of the appendix. The "A" stands for the "Appendix", not the section numbering.
 
 ![**The Great Wave off Kanagawa**. A woodblock print by @katsushika1831.](img/hokusai_kanagawa.jpg){#fig-img}
 
-
-{{< pagebreak >}}
-<!-- Bibliography -->
+{{< pagebreak >}} 
